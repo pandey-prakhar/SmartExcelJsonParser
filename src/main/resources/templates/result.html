@@ -10,7 +10,7 @@
     <pre th:text="${json}"></pre>
 </div>
 
-<div th:if="${excelBytes}">
+<div th:if="${fileName}">
     <h1>Excel File Ready</h1>
     <a th:href="@{'/download?fileName=' + ${fileName}}"
        class="btn btn-success"

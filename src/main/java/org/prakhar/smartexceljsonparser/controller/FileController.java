@@ -1,5 +1,7 @@
 package org.prakhar.smartexceljsonparser.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.prakhar.smartexceljsonparser.service.ExcelService;
 import org.prakhar.smartexceljsonparser.service.JsonService;
 import org.prakhar.smartexceljsonparser.utils.ValidationUtils;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Base64;
 
 @Controller
 public class FileController {
@@ -29,7 +33,8 @@ public class FileController {
     public String handleConversion(
             @RequestParam("file") MultipartFile file,
             @RequestParam("conversionType") String conversionType,
-            Model model
+            Model model,
+            HttpSession session // Add HttpSession
     ) {
         try {
             ValidationUtils.validateFile(file);
@@ -38,7 +43,8 @@ public class FileController {
                 model.addAttribute("json", json);
             } else {
                 byte[] excelBytes = jsonService.convertJsonToExcel(file.getBytes());
-                model.addAttribute("excelBytes", excelBytes);
+                // Store in session instead of model
+                session.setAttribute("excelBytes", excelBytes);
                 model.addAttribute("fileName", "converted.xlsx");
             }
             return "result";
@@ -46,5 +52,24 @@ public class FileController {
             model.addAttribute("error", e.getMessage());
             return "index";
         }
+    }
+    @GetMapping("/download")
+    public void downloadFile(
+            @RequestParam("fileName") String fileName,
+            HttpSession session,
+            HttpServletResponse response
+    ) throws IOException {
+        byte[] excelBytes = (byte[]) session.getAttribute("excelBytes");
+        if (excelBytes == null) {
+            throw new IllegalArgumentException("File not found");
+        }
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        response.getOutputStream().write(excelBytes);
+        response.getOutputStream().flush();
+
+        // Clear the session data after download
+        session.removeAttribute("excelBytes");
     }
 }
