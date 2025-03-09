@@ -13,7 +13,8 @@ The application is built using **Spring Boot (Java)** for the backend and **Thym
 - Supports multiple sheets in an Excel file, encapsulated into a single JSON structure.
 - Converts JSON back to an Excel file while preserving structure.
 - Provides a simple web-based UI for file uploads and conversions.
-- Modular codebase following best practices.
+- Validates the Excel file type before processing.
+- Unit tests for core functionalities.
 
 ---
 
@@ -40,6 +41,13 @@ To start the application, use the following command:
 ```sh
 mvn spring-boot:run
 ```
+
+## "Alternative (IDE):
+
+Import the project as a Maven project in your IDE.
+
+Run SmartExcelJsonParserApplication.java directly.
+
 This will start the server on **http://localhost:8080**.
 
 ### Step 4: Access the Web UI
