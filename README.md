@@ -55,7 +55,7 @@ This will start the server on **http://localhost:8080**.
    ```
    http://localhost:8080
    ```
-2. Upload an Excel file and choose the conversion type (Excel → JSON or JSON → Excel).
+2. Upload an Excel file(I have attached sample test files for both the use cases in root folder) and choose the conversion type (Excel → JSON or JSON → Excel).
 3. View the results or download the converted file.
 
 ---
