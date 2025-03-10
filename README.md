@@ -1,4 +1,22 @@
-# Smart Excel-JSON Parser 
+# Smart Excel-JSON Parser
+
+**Note:** This repository contains code for both the **frontend and backend**. The frontend is built using **Thymeleaf**, following the MVC (Model-View-Controller) architecture.
+
+## Project Structure
+```
+SmartExcelJsonParser/
+│── src/main/java/org/prakhar/
+│   ├── controller/      # Handles HTTP requests (Backend)
+│   ├── service/         # Business logic for conversion (Backend)
+│   ├── utils/           # Helper functions for Excel & JSON processing (Backend)
+│── src/main/resources/templates/  # Thymeleaf and HTML templates (Frontend)
+│── pom.xml             # Project dependencies (Maven)
+│── README.md           # Project documentation
+```
+- **Frontend Files**: Located in `src/main/resources/templates/` (Thymeleaf HTML) and `src/main/resources/static/` (CSS, JS if applicable).
+- **Backend Files**: Controllers, Services, and Utilities are inside `src/main/java/org/prakhar/`.
+
+---
 
 ## Overview
 Smart Excel-JSON Parser is a full-stack web application that allows users to:
@@ -42,12 +60,9 @@ To start the application, use the following command:
 mvn spring-boot:run
 ```
 
-## "Alternative (IDE):
-
+## Alternative of step 2 and 3(IDE):
 Import the project as a Maven project in your IDE.
-
-Run SmartExcelJsonParserApplication.java directly.
-
+Run `SmartExcelJsonParserApplication.java` directly.
 This will start the server on **http://localhost:8080**.
 
 ### Step 4: Access the Web UI
@@ -55,22 +70,8 @@ This will start the server on **http://localhost:8080**.
    ```
    http://localhost:8080
    ```
-2. Upload an Excel file(I have attached sample test files for both the use cases in root folder) and choose the conversion type (Excel → JSON or JSON → Excel).
+2. Upload an Excel file (I have attached sample test files for both the use cases in the root folder) and choose the conversion type (Excel → JSON or JSON → Excel).
 3. View the results or download the converted file.
-
----
-
-## Project Structure
-```
-SmartExcelJsonParser/
-│── src/main/java/org/prakhar/
-│   ├── controller/      # Handles HTTP requests
-│   ├── service/         # Business logic for conversion
-│   ├── utils/           # Helper functions for Excel & JSON processing
-│── src/main/resources/templates/  # Thymeleaf HTML templates
-│── pom.xml             # Project dependencies (Maven)
-│── README.md           # Project documentation
-```
 
 ---
 
@@ -84,13 +85,12 @@ SmartExcelJsonParser/
 
 ## Additional Notes, Assumptions, and Limitations
 - If any issues occur during execution, ensure that Java and Maven versions are correctly installed and configured.
-- The project is optimized for the provided sample Excel format. While it works with other format of sheets, but the best readable JSON results are achieved with the given structure.
+- The project is optimized for the provided sample Excel format. While it works with other formats of sheets, the best readable JSON results are achieved with the given structure.
 - The application is designed for simple Excel structures. Complex formatting (e.g., colors, bold text) is not retained in JSON.
 
 ---
 
 ## Author
-**Prakhar Pandey**
-
+**Prakhar Pandey**  
 For any queries, please reach out via email at prakharpandey1198@gmail.com.
 
